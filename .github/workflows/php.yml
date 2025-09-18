@@ -1,0 +1,37 @@
+name: PHP Syntax Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  php-syntax-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mysqli, pdo, pdo_mysql
+        
+    - name: Check PHP syntax
+      run: |
+        find . -name "*.php" -not -path "./vendor/*" -not -path "./node_modules/*" -exec php -l {} \;
+        
+    - name: Check for common PHP issues
+      run: |
+        echo "Checking for common PHP issues..."
+        # Check for short tags
+        if grep -r "<?=" . --include="*.php"; then
+          echo "Warning: Found short tags (<?=) which may not be enabled on all servers"
+        fi
+        
+        # Check for missing semicolons (basic check)
+        if grep -r "echo.*[^;]$" . --include="*.php"; then
+          echo "Warning: Found potential missing semicolons"
+        fi
