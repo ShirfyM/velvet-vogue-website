@@ -1,0 +1,65 @@
+# Database configuration (contains sensitive information)
+config.php
+
+# Upload directories (can be large and should be managed separately)
+uploads/
+assets/uploads/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Cache files
+cache/
+*.cache
+
+# Backup files
+*.bak
+*.backup
+
+# Node modules (if using any build tools)
+node_modules/
+
+# Composer vendor directory (if using Composer)
+vendor/
+
+# PHP specific
+*.php~
+*.php.bak
+
+# Database dumps
+*.sql
+*.sqlite
+*.db
+
+# Sensitive data
+private/
+secrets/
+
+# Test files (remove before production)
+test_db.php
